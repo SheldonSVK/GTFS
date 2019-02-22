@@ -1,7 +1,5 @@
 #include <string>
 
-#pragma once
-
 using namespace std;
 
 class Routes
@@ -52,4 +50,3 @@ public:
 	void SetNext(Routes* next) { Next = next; }
 	void SetPrev(Routes* prev) { Prev = prev; }
 };
-

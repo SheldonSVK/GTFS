@@ -1,7 +1,5 @@
 #include <string>
 
-#pragma once
-
 using namespace std;
 
 class Stops
@@ -59,4 +57,3 @@ public:
 	void SetNext(Stops* next) { Next = next; }
 	void SetPrev(Stops* prev) { Prev = prev; }
 };
-

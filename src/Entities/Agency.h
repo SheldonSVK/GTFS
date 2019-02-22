@@ -1,7 +1,5 @@
 #include <string>
 
-#pragma once
-
 using namespace std;
 
 class Agency
@@ -18,7 +16,7 @@ private:
 
 public:
 	Agency();
-	Agency(string line);
+	Agency(string id,string name,string url,string timezone,string lang,string phone,string fareurl,string email);
 	~Agency();
 
 	//Getery
@@ -41,4 +39,3 @@ public:
 	void SetEmail(string email) { Email = email; }
 
 };
-
