@@ -20,6 +20,7 @@ private:
 
 public:
 	Routes();
+	Routes(string id,string agencyid,string shortname,string longname,string desc,string type,string url,string color,string textcolor, string sortorder);
 	~Routes();
 
 	//Get

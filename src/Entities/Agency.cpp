@@ -25,8 +25,3 @@ Agency::Agency(string id,string name,string url,string timezone,string lang,stri
   FareURL=fareurl;
   Email=email;
 }
-
-/*
- * Constructor with line parameters
- *
-*/
