@@ -35,8 +35,6 @@ public:
 	string GetParentStation() { return ParentStation; }
 	string GetStopTimeZone() { return StopTimeZone; }
 	string GetBoarding() { return Boarding; }
-	Stops* GetNext() { return Next; }
-	Stops* GetPrev() { return Prev; }
 
 	//Set
 	void SetID(string id) { ID = id; }

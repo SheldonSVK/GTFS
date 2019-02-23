@@ -3,14 +3,14 @@
 //Empty constructor
 Agency::Agency()
 {
-  ID=null;
-  Name=null;
-  URL=null;
-  TimeZone=null;
-  Lang=null;
-  Phone=null;
-  FareURL=null;
-  Email=null;
+  ID.clear();
+  Name.clear();
+  URL.clear();
+  TimeZone.clear();
+  Lang.clear();
+  Phone.clear();
+  FareURL.clear();
+  Email.clear();
 }
 
 //Constructor with all parameters

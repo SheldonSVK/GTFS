@@ -32,8 +32,6 @@ public:
 	string GetColor() { return Color; }
 	string GetTextColor() { return TextColor; }
 	string GetSorOrder() { return SortOrder; }
-	Routes* GetNext() { return Next; }
-	Routes* GetPrev() { return Prev; }
 
 	//Set
 	void SetID(string id) { ID = id; }

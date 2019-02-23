@@ -4,16 +4,16 @@
 
 Routes::Routes()
 {
-  ID=null;
-  AgencyID=null;
-  ShortName=null;
-  LongName=null;
-  Desc=null;
-  Type=null;
-  URL=null;
-  Color=null;
-  TextColor=null;
-  SortOrder=null;
+  ID.clear();
+  AgencyID.clear();
+  ShortName.clear();
+  LongName.clear();
+  Desc.clear();
+  Type.clear();
+  URL.clear();
+  Color.clear();
+  TextColor.clear();
+  SortOrder.clear();
 }
 
 //constructor with parameters
