@@ -4,8 +4,8 @@ using namespace std;
 
 class Stops
 {
-private:
-	string ID;
+  private:
+	string StopID;
 	string Code;
 	string Name;
 	string Desc;
@@ -18,13 +18,13 @@ private:
 	string StopTimeZone;
 	string Boarding;
 
-public:
+  public:
 	Stops();
-	Stops(string id,string code,string name,string desc,string lat,string lon,string zoneid,string url,string locationtype,string parentstation,string stoptimezone,string boarding);
+	Stops(string stopid, string code, string name, string desc, string lat, string lon, string zoneid, string url, string locationtype, string parentstation, string stoptimezone, string boarding);
 	~Stops();
 
 	//Get
-	string GetID() { return this->ID; }
+	string GetStopID() { return this->StopID; }
 	string GetCode() { return this->Code; }
 	string GetName() { return this->Name; }
 	string GetDesc() { return this->Desc; }
@@ -38,7 +38,7 @@ public:
 	string GetBoarding() { return this->Boarding; }
 
 	//Set
-	void SetID(string id) { this->ID = id; }
+	void SetStopID(string stopid) { this->StopID = stopid; }
 	void SetCode(string code) { this->Code = code; }
 	void SetName(string name) { this->Name = name; }
 	void SetDesc(string desc) { this->Desc = desc; }
@@ -54,32 +54,32 @@ public:
 
 Stops::Stops()
 {
-    ID.clear();
-    Code.clear();
-    Name.clear();
-    Desc.clear();
-    Lat.clear();
-    Lon.clear();
-    ZoneID.clear();
-    URL.clear();
-    LocationType.clear();
-    ParentStation.clear();
-    StopTimeZone.clear();
-    Boarding.clear();
+	StopID.clear();
+	Code.clear();
+	Name.clear();
+	Desc.clear();
+	Lat.clear();
+	Lon.clear();
+	ZoneID.clear();
+	URL.clear();
+	LocationType.clear();
+	ParentStation.clear();
+	StopTimeZone.clear();
+	Boarding.clear();
 }
 
-Stops::Stops(string id,string code,string name,string desc,string lat,string lon,string zoneid,string url,string locationtype,string parentstation,string stoptimezone,string boarding)
+Stops::Stops(string stopid, string code, string name, string desc, string lat, string lon, string zoneid, string url, string locationtype, string parentstation, string stoptimezone, string boarding)
 {
-    ID=id;
-    Code=code;
-    Name=name;
-    Desc=desc;
-    Lat=lat;
-    Lon=lon;
-    ZoneID=zoneid;
-    URL=url;
-    LocationType=locationtype;
-    ParentStation=parentstation;
-    StopTimeZone=stoptimezone;
-    Boarding=boarding;
+	this->StopID = stopid;
+	Code = code;
+	Name = name;
+	Desc = desc;
+	Lat = lat;
+	Lon = lon;
+	ZoneID = zoneid;
+	URL = url;
+	LocationType = locationtype;
+	ParentStation = parentstation;
+	StopTimeZone = stoptimezone;
+	Boarding = boarding;
 }

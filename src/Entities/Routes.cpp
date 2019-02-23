@@ -4,8 +4,8 @@ using namespace std;
 
 class Routes
 {
-private:
-	string ID;
+  private:
+	string RouteID;
 	string AgencyID;
 	string ShortName;
 	string LongName;
@@ -16,13 +16,13 @@ private:
 	string TextColor;
 	string SortOrder;
 
-public:
+  public:
 	Routes();
-	Routes(string id,string agencyid,string shortname,string longname,string desc,string type,string url,string color,string textcolor, string sortorder);
+	Routes(string routeid, string agencyid, string shortname, string longname, string desc, string type, string url, string color, string textcolor, string sortorder);
 	~Routes();
 
 	//Get
-	string GetID() { return ID; }
+	string GetRouteID() { return this->RouteID; }
 	string GetAgencyID() { return AgencyID; }
 	string GetShortName() { return ShortName; }
 	string GetLongName() { return LongName; }
@@ -34,7 +34,7 @@ public:
 	string GetSorOrder() { return SortOrder; }
 
 	//Set
-	void SetID(string id) { ID = id; }
+	void SetRouteID(string routeid) { this->RouteID = routeid; }
 	void SetAgencyID(string agencyid) { AgencyID = agencyid; }
 	void SetShortName(string shortname) { ShortName = shortname; }
 	void SetLongName(string longname) { LongName = longname; }
@@ -50,30 +50,29 @@ public:
 
 Routes::Routes()
 {
-  ID.clear();
-  AgencyID.clear();
-  ShortName.clear();
-  LongName.clear();
-  Desc.clear();
-  Type.clear();
-  URL.clear();
-  Color.clear();
-  TextColor.clear();
-  SortOrder.clear();
+	this->RouteID.clear();
+	AgencyID.clear();
+	ShortName.clear();
+	LongName.clear();
+	Desc.clear();
+	Type.clear();
+	URL.clear();
+	Color.clear();
+	TextColor.clear();
+	SortOrder.clear();
 }
 
 //constructor with parameters
-Routes::Routes(string id,string agencyid,string shortname,string longname,string desc,string type,string url,string color,string textcolor, string sortorder)
+Routes::Routes(string routeid, string agencyid, string shortname, string longname, string desc, string type, string url, string color, string textcolor, string sortorder)
 {
-  ID=id;
-  AgencyID=agencyid;
-  ShortName=shortname;
-  LongName=longname;
-  Desc=desc;
-  Type=type;
-  URL=url;
-  Color=color;
-  TextColor=textcolor;
-  SortOrder=sortorder;
-
+	this->RouteID = routeid;
+	AgencyID = agencyid;
+	ShortName = shortname;
+	LongName = longname;
+	Desc = desc;
+	Type = type;
+	URL = url;
+	Color = color;
+	TextColor = textcolor;
+	SortOrder = sortorder;
 }
