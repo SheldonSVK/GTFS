@@ -20,6 +20,7 @@ private:
 
 public:
 	Stops();
+	Stops(string id,string code,string name,string desc,string lat,string lon,string zoneid,string url,string locationtype,string parentstation,string stoptimezone,string boarding);
 	~Stops();
 
 	//Get
