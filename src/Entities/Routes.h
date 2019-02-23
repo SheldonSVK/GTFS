@@ -15,8 +15,6 @@ private:
 	string Color;
 	string TextColor;
 	string SortOrder;
-	Routes* Next;
-	Routes* Prev;
 
 public:
 	Routes();
@@ -48,6 +46,4 @@ public:
 	void SetColor(string color) { Color = color; }
 	void SetTextColor(string textcolor) { TextColor = textcolor; }
 	void SetSortOrder(string sortorder) { SortOrder = sortorder; }
-	void SetNext(Routes* next) { Next = next; }
-	void SetPrev(Routes* prev) { Prev = prev; }
 };

@@ -14,8 +14,6 @@ Routes::Routes()
   Color=null;
   TextColor=null;
   SortOrder=null;
-  Next=null;
-  Prev=null;
 }
 
 //constructor with parameters
@@ -31,6 +29,5 @@ Routes::Routes(string id,string agencyid,string shortname,string longname,string
   Color=color;
   TextColor=textcolor;
   SortOrder=sortorder;
-  Next=null;
-  Prev=null;
+
 }

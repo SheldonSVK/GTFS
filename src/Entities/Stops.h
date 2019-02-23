@@ -18,9 +18,6 @@ private:
 	string StopTimeZone;
 	string Boarding;
 
-	Stops* Next;
-	Stops* Prev;
-
 public:
 	Stops();
 	~Stops();
@@ -54,6 +51,4 @@ public:
 	void SetParentStation(string parentstation) { ParentStation = parentstation; }
 	void SetStopTimeZone(string stoptimezone) { StopTimeZone = stoptimezone; }
 	void SetBoarding(string boarding) { Boarding = boarding; }
-	void SetNext(Stops* next) { Next = next; }
-	void SetPrev(Stops* prev) { Prev = prev; }
 };
