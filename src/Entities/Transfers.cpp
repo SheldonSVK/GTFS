@@ -4,44 +4,44 @@ using namespace std;
 
 class Transfers
 {
-  private:
-    string FromStopID;
-    string ToStopID;
-    string TransferType;
-    string MinTransferTime;
+private:
+  string FromStopID;
+  string ToStopID;
+  string TransferType;
+  string MinTransferTime;
 
-  public:
-    Transfers();
-    Transfers(string fromstopid, string tostopid, string transfertype, string mintransfertime);
-    ~Transfers();
+public:
+  Transfers();
+  Transfers(const string &fromstopid, const string &tostopid, const string &transfertype, const string &mintransfertime);
+  ~Transfers();
 
-    //Gets
-    string GetFromStopID() { return this->FromStopID; }
-    string GetToStopID() { return this->ToStopID; }
-    string GetTransferType() { return this->TransferType; }
-    string GetMinTransferTime() { return this->MinTransferTime; }
+  //Gets
+  string GetFromStopID() { return this->FromStopID; }
+  string GetToStopID() { return this->ToStopID; }
+  string GetTransferType() { return this->TransferType; }
+  string GetMinTransferTime() { return this->MinTransferTime; }
 
-    //Sets
-    void SetFromStopID(string fromstopid) { this->FromStopID = fromstopid; }
-    void SetToStopID(string tostopid) { this->ToStopID = tostopid; }
-    void SetTransferType(string transfertype) { this->TransferType = transfertype; }
-    void SetMinTransferTime(string mintransfertime) { this->MinTransferTime = mintransfertime; }
+  //Sets
+  void SetFromStopID(const string &fromstopid) { this->FromStopID = fromstopid; }
+  void SetToStopID(const string &tostopid) { this->ToStopID = tostopid; }
+  void SetTransferType(const string &transfertype) { this->TransferType = transfertype; }
+  void SetMinTransferTime(const string &mintransfertime) { this->MinTransferTime = mintransfertime; }
 };
 
 Transfers::Transfers()
 {
-    this->FromStopID.clear();
-    this->ToStopID.clear();
-    this->TransferType.clear();
-    this->MinTransferTime.clear();
+  this->FromStopID.clear();
+  this->ToStopID.clear();
+  this->TransferType.clear();
+  this->MinTransferTime.clear();
 }
 
-Transfers::Transfers(string fromstopid, string tostopid, string transfertype, string mintransfertime)
+Transfers::Transfers(const string &fromstopid, const string &tostopid, const string &transfertype, const string &mintransfertime)
 {
-    this->FromStopID = fromstopid;
-    this->ToStopID = tostopid;
-    this->TransferType = transfertype;
-    this->MinTransferTime = mintransfertime;
+  SetFromStopID(fromstopid);
+  SetToStopID(tostopid);
+  SetTransferType(transfertype);
+  SetMinTransferTime(mintransfertime);
 }
 
 Transfers::~Transfers()

@@ -20,7 +20,7 @@ class Stops
 
   public:
 	Stops();
-	Stops(string stopid, string code, string name, string desc, string lat, string lon, string zoneid, string url, string locationtype, string parentstation, string stoptimezone, string boarding);
+	Stops(const string &stopid, const string &code, const string &name, const string &desc, const string &lat, const string &lon, const string &zoneid, const string &url, const string &locationtype, const string &parentstation, const string &stoptimezone, const string &boarding);
 	~Stops();
 
 	//Get
@@ -38,18 +38,18 @@ class Stops
 	string GetBoarding() { return this->Boarding; }
 
 	//Set
-	void SetStopID(string stopid) { this->StopID = stopid; }
-	void SetCode(string code) { this->Code = code; }
-	void SetName(string name) { this->Name = name; }
-	void SetDesc(string desc) { this->Desc = desc; }
-	void SetLat(string lat) { Lat = lat; }
-	void SetLon(string lon) { Lon = lon; }
-	void SetZoneID(string zoneid) { ZoneID = zoneid; }
-	void SetURL(string url) { URL = url; }
-	void SetLocationType(string locatintype) { LocationType = locatintype; }
-	void SetParentStation(string parentstation) { ParentStation = parentstation; }
-	void SetStopTimeZone(string stoptimezone) { StopTimeZone = stoptimezone; }
-	void SetBoarding(string boarding) { Boarding = boarding; }
+	void SetStopID(const string &stopid) { this->StopID = stopid; }
+	void SetCode(const string &code) { this->Code = code; }
+	void SetName(const string &name) { this->Name = name; }
+	void SetDesc(const string &desc) { this->Desc = desc; }
+	void SetLat(const string &lat) { Lat = lat; }
+	void SetLon(const string &lon) { Lon = lon; }
+	void SetZoneID(const string &zoneid) { ZoneID = zoneid; }
+	void SetURL(const string &url) { URL = url; }
+	void SetLocationType(const string &locatintype) { LocationType = locatintype; }
+	void SetParentStation(const string &parentstation) { ParentStation = parentstation; }
+	void SetStopTimeZone(const string &stoptimezone) { StopTimeZone = stoptimezone; }
+	void SetBoarding(const string &boarding) { Boarding = boarding; }
 };
 
 Stops::Stops()
@@ -68,18 +68,18 @@ Stops::Stops()
 	Boarding.clear();
 }
 
-Stops::Stops(string stopid, string code, string name, string desc, string lat, string lon, string zoneid, string url, string locationtype, string parentstation, string stoptimezone, string boarding)
+Stops::Stops(const string &stopid, const string &code, const string &name, const string &desc, const string &lat, const string &lon, const string &zoneid, const string &url, const string &locationtype, const string &parentstation, const string &stoptimezone, const string &boarding)
 {
-	this->StopID = stopid;
-	Code = code;
-	Name = name;
-	Desc = desc;
-	Lat = lat;
-	Lon = lon;
-	ZoneID = zoneid;
-	URL = url;
-	LocationType = locationtype;
-	ParentStation = parentstation;
-	StopTimeZone = stoptimezone;
-	Boarding = boarding;
+	SetStopID(stopid);
+	SetCode(code);
+	SetName(name);
+	SetDesc(desc);
+	SetLat(lat);
+	SetLon(lon);
+	SetZoneID(zoneid);
+	SetURL(url);
+	SetLocationType(locationtype);
+	SetParentStation(parentstation);
+	SetStopTimeZone(stoptimezone);
+	SetBoarding(boarding);
 }

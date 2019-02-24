@@ -4,39 +4,39 @@ using namespace std;
 
 class CalendarDates
 {
-  private:
-    string ServiceID;
-    string Date;
-    string ExceptionType;
+private:
+  string ServiceID;
+  string Date;
+  string ExceptionType;
 
-  public:
-    CalendarDates();
-    CalendarDates(string serviceid, string date, string exceptiontype);
-    ~CalendarDates();
+public:
+  CalendarDates();
+  CalendarDates(const string &serviceid, const string &date, const string &exceptiontype);
+  ~CalendarDates();
 
-    //Gets
-    string GetServiceID() { return this->ServiceID; }
-    string GetDate() { return this->Date; }
-    string GetExceptionType() { return this->ExceptionType; }
+  //Gets
+  string GetServiceID() { return this->ServiceID; }
+  string GetDate() { return this->Date; }
+  string GetExceptionType() { return this->ExceptionType; }
 
-    //Sets
-    void SetServiceID(string serviceid) { this->ServiceID = serviceid; }
-    void SetDate(string date) { this->Date = date; }
-    void SetExceptionType(string exceptiontype) { this->ExceptionType = exceptiontype; }
+  //Sets
+  void SetServiceID(const string &serviceid) { this->ServiceID = serviceid; }
+  void SetDate(const string &date) { this->Date = date; }
+  void SetExceptionType(const string &exceptiontype) { this->ExceptionType = exceptiontype; }
 };
 
 CalendarDates::CalendarDates()
 {
-    this->ServiceID.clear();
-    this->Date.clear();
-    this->ExceptionType.clear();
+  this->ServiceID.clear();
+  this->Date.clear();
+  this->ExceptionType.clear();
 }
 
-CalendarDates::CalendarDates(string serviceid, string date, string exceptiontype)
+CalendarDates::CalendarDates(const string &serviceid, const string &date, const string &exceptiontype)
 {
-    this->ServiceID = serviceid;
-    this->Date = date;
-    this->ExceptionType = exceptiontype;
+  SetServiceID(serviceid);
+  SetDate(date);
+  SetExceptionType(exceptiontype);
 }
 
 CalendarDates::~CalendarDates()

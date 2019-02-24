@@ -18,7 +18,7 @@ class Routes
 
   public:
 	Routes();
-	Routes(string routeid, string agencyid, string shortname, string longname, string desc, string type, string url, string color, string textcolor, string sortorder);
+	Routes(const string &routeid, const string &agencyid, const string &shortname, const string &longname, const string &desc, const string &type, const string &url, const string &color, const string &textcolor, const string &sortorder);
 	~Routes();
 
 	//Get
@@ -34,16 +34,16 @@ class Routes
 	string GetSorOrder() { return SortOrder; }
 
 	//Set
-	void SetRouteID(string routeid) { this->RouteID = routeid; }
-	void SetAgencyID(string agencyid) { AgencyID = agencyid; }
-	void SetShortName(string shortname) { ShortName = shortname; }
-	void SetLongName(string longname) { LongName = longname; }
-	void SetDesc(string desc) { Desc = desc; }
-	void SetType(string type) { Type = type; }
-	void SetURL(string url) { URL = url; }
-	void SetColor(string color) { Color = color; }
-	void SetTextColor(string textcolor) { TextColor = textcolor; }
-	void SetSortOrder(string sortorder) { SortOrder = sortorder; }
+	void SetRouteID(const string &routeid) { this->RouteID = routeid; }
+	void SetAgencyID(const string &agencyid) { AgencyID = agencyid; }
+	void SetShortName(const string &shortname) { ShortName = shortname; }
+	void SetLongName(const string &longname) { LongName = longname; }
+	void SetDesc(const string &desc) { Desc = desc; }
+	void SetType(const string &type) { Type = type; }
+	void SetURL(const string &url) { URL = url; }
+	void SetColor(const string &color) { Color = color; }
+	void SetTextColor(const string &textcolor) { TextColor = textcolor; }
+	void SetSortOrder(const string &sortorder) { SortOrder = sortorder; }
 };
 
 //Empty Constructor
@@ -63,16 +63,16 @@ Routes::Routes()
 }
 
 //constructor with parameters
-Routes::Routes(string routeid, string agencyid, string shortname, string longname, string desc, string type, string url, string color, string textcolor, string sortorder)
+Routes::Routes(const string &routeid, const string &agencyid, const string &shortname, const string &longname, const string &desc, const string &type, const string &url, const string &color, const string &textcolor, const string &sortorder)
 {
-	this->RouteID = routeid;
-	AgencyID = agencyid;
-	ShortName = shortname;
-	LongName = longname;
-	Desc = desc;
-	Type = type;
-	URL = url;
-	Color = color;
-	TextColor = textcolor;
-	SortOrder = sortorder;
+	SetRouteID(routeid);
+	SetAgencyID(agencyid);
+	SetShortName(shortname);
+	SetLongName(longname);
+	SetDesc(desc);
+	SetType(type);
+	SetURL(url);
+	SetColor(color);
+	SetTextColor(textcolor);
+	SetSortOrder(sortorder);
 }

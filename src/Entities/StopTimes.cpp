@@ -18,7 +18,7 @@ private:
 
 public:
   StopTimes();
-  StopTimes(string tripid, string arrivaltime, string departuretime, string stopid, string stopsequence, string stopheadsign, string pickuptype, string dropofftype, string shapedistraveled, string timepoint);
+  StopTimes(const string &tripid, const string &arrivaltime, const string &departuretime, const string &stopid, const string &stopsequence, const string &stopheadsign, const string &pickuptype, const string &dropofftype, const string &shapedistraveled, const string &timepoint);
   ~StopTimes();
 
   //Gets
@@ -34,16 +34,16 @@ public:
   string GetTimepoint() { return this->Timepoint; }
 
   //Sets
-  void SetTripID(string tripid) { this->TripID = tripid; }
-  void SetArrivalTime(string arrivaltime) { this->ArrivalTime = arrivaltime; }
-  void SetDepartureTime(string departuretime) { this->DepartureTime = departuretime; }
-  void SetStopID(string stopid) { this->StopID = stopid; }
-  void SetStopSequence(string stopsequence) { this->StopSequence = stopsequence; }
-  void SetStopHeadsign(string stopheadsign) { this->StopHeadsign = stopheadsign; }
-  void SetPickupType(string pickuptype) { this->PickupType = pickuptype; }
-  void SetDropOffType(string dropofftype) { this->DropOffType = dropofftype; }
-  void SetShapeDistTraveled(string shapetrveled) { this->ShapeDistTraveled = shapetrveled; }
-  void SetTimepoint(string timepoint) { this->Timepoint = timepoint; }
+  void SetTripID(const string &tripid) { this->TripID = tripid; }
+  void SetArrivalTime(const string &arrivaltime) { this->ArrivalTime = arrivaltime; }
+  void SetDepartureTime(const string &departuretime) { this->DepartureTime = departuretime; }
+  void SetStopID(const string &stopid) { this->StopID = stopid; }
+  void SetStopSequence(const string &stopsequence) { this->StopSequence = stopsequence; }
+  void SetStopHeadsign(const string &stopheadsign) { this->StopHeadsign = stopheadsign; }
+  void SetPickupType(const string &pickuptype) { this->PickupType = pickuptype; }
+  void SetDropOffType(const string &dropofftype) { this->DropOffType = dropofftype; }
+  void SetShapeDistTraveled(const string &shapetrveled) { this->ShapeDistTraveled = shapetrveled; }
+  void SetTimepoint(const string &timepoint) { this->Timepoint = timepoint; }
 };
 
 StopTimes::StopTimes()
@@ -60,18 +60,18 @@ StopTimes::StopTimes()
   this->Timepoint.clear();
 }
 
-StopTimes::StopTimes(string tripid, string arrivaltime, string departuretime, string stopid, string stopsequence, string stopheadsign, string pickuptype, string dropofftype, string shapedistraveled, string timepoint)
+StopTimes::StopTimes(const string &tripid, const string &arrivaltime, const string &departuretime, const string &stopid, const string &stopsequence, const string &stopheadsign, const string &pickuptype, const string &dropofftype, const string &shapedistraveled, const string &timepoint)
 {
-  this->TripID = tripid;
-  this->ArrivalTime = arrivaltime;
-  this->DepartureTime = departuretime;
-  this->StopID = stopid;
-  this->StopSequence = stopsequence;
-  this->StopHeadsign = stopheadsign;
-  this->PickupType = pickuptype;
-  this->DropOffType = dropofftype;
-  this->ShapeDistTraveled = shapedistraveled;
-  this->Timepoint = timepoint;
+  SetTripID(tripid);
+  SetArrivalTime(arrivaltime);
+  SetDepartureTime(departuretime);
+  SetStopID(stopid);
+  SetStopSequence(stopsequence);
+  SetStopHeadsign(stopheadsign);
+  SetPickupType(pickuptype);
+  SetDropOffType(dropofftype);
+  SetShapeDistTraveled(shapedistraveled);
+  SetTimepoint(timepoint);
 }
 
 StopTimes::~StopTimes()

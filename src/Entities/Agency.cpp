@@ -16,7 +16,7 @@ class Agency
 
   public:
 	Agency();
-	Agency(string agencyid, string name, string url, string timezone, string lang, string phone, string fareurl, string email);
+	Agency(const string &agencyid, const string &name, const string &url, const string &timezone, const string &lang, const string &phone, const string &fareurl, const string &email);
 	~Agency();
 
 	//Getery
@@ -30,13 +30,14 @@ class Agency
 	string GetEmail() { return this->Email; }
 
 	//Settery
-	void SetAgencyID(string agencyid) { this->AgencyID = agencyid; }
-	void SetName(string name) { this->Name = name; }
-	void SetTimeZone(string timezone) { this->TimeZone = timezone; }
-	void SetLang(string lang) { this->Lang = lang; }
-	void SetPhone(string phone) { this->Phone = phone; }
-	void SetFareURL(string fareurl) { this->FareURL = fareurl; }
-	void SetEmail(string email) { this->Email = email; }
+	void SetAgencyID(const string &agencyid) { this->AgencyID = agencyid; }
+	void SetName(const string &name) { this->Name = name; }
+	void SetURL(const string &url) { this->URL = url; }
+	void SetTimeZone(const string &timezone) { this->TimeZone = timezone; }
+	void SetLang(const string &lang) { this->Lang = lang; }
+	void SetPhone(const string &phone) { this->Phone = phone; }
+	void SetFareURL(const string &fareurl) { this->FareURL = fareurl; }
+	void SetEmail(const string &email) { this->Email = email; }
 };
 
 //Empty constructor
@@ -53,14 +54,18 @@ Agency::Agency()
 }
 
 //Constructor with all parameters
-Agency::Agency(string agencyid, string name, string url, string timezone, string lang, string phone, string fareurl, string email)
+Agency::Agency(const string &agencyid, const string &name, const string &url, const string &timezone, const string &lang, const string &phone, const string &fareurl, const string &email)
 {
-	this->AgencyID = agencyid;
-	this->Name = name;
-	this->URL = url;
-	this->TimeZone = timezone;
-	this->Lang = lang;
-	this->Phone = phone;
-	this->FareURL = fareurl;
-	this->Email = email;
+	SetAgencyID(agencyid);
+	SetName(name);
+	SetURL(url);
+	SetTimeZone(timezone);
+	SetLang(lang);
+	SetPhone(phone);
+	SetFareURL(fareurl);
+	SetEmail(email);
+}
+
+Agency::~Agency()
+{
 }
