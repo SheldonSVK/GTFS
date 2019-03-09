@@ -1,6 +1,6 @@
 #include "../include/Feed.hpp"
 
-Feed::Feed(string path)
+Feed::Feed(const string &path)
 {
     this->SetAgencyFeed(ImportAgency(path));
     this->SetCalendarFeed(ImportCalendar(path));

@@ -1,5 +1,71 @@
 #include "../include/Entities.hpp"
 
+int Time::GetInt(string &str)
+{
+    string temp;
+    for (int i = 0; i < str.length(); i++)
+    {
+        if (str[i] == ':')
+        {
+            str = str.substr(i + 1, str.length() - 1);
+            break;
+        }
+        else
+            temp += str[i];
+    }
+    if (temp.length() == 0)
+        return 0;
+    return stoi(temp);
+}
+
+Time::Time(int hour, int minute, int seconds)
+{
+    this->Hour = hour;
+    this->Minute = minute;
+    this->Seconds = seconds;
+}
+
+Time::Time(string time_details)
+{
+    this->Hour = this->GetInt(time_details);
+    this->Minute = this->GetInt(time_details);
+    this->Seconds = this->GetInt(time_details);
+}
+
+int Date::GetInt(string &str, int size)
+{
+    string temp;
+    if (size > str.length())
+        return 0;
+    for (int i = 0; i < size + 1; i++)
+    {
+        if (i == size)
+        {
+            str = str.substr(i, str.length() - 1);
+            break;
+        }
+        else
+            temp += str[i];
+    }
+
+    if (temp.length() == 0)
+        return 0;
+    return stoi(temp);
+}
+
+Date::Date(int day, int month, int year)
+{
+    this->Day = day;
+    this->Month = month;
+    this->Year = year;
+}
+Date::Date(string date)
+{
+    this->Year = GetInt(date, 4);
+    this->Month = GetInt(date, 2);
+    this->Day = GetInt(date, 2);
+}
+
 Agency::Agency(const string &agencyid, const string &name, const string &url, const string &timezone, const string &lang, const string &phone, const string &fareurl, const string &email)
 {
     SetAgencyID(agencyid);

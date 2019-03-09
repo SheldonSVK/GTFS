@@ -872,3 +872,12 @@ vector<Trips *> ImportTrips(string path)
     delete[] index;
     return feed;
 }
+
+vector<StopTimes *> SortSequence(vector<StopTimes *> stop)
+{
+    sort(stop.begin(), stop.end(), [](StopTimes *lhs, StopTimes *rhs) {
+        return lhs->GetStopSequence() < rhs->GetStopSequence();
+    });
+
+    return stop;
+}

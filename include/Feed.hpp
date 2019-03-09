@@ -18,7 +18,7 @@ private:
   vector<Trips *> TripsFeed;
 
 public:
-  Feed(string path);
+  explicit Feed(const string &path);
   ~Feed();
 
   //Gets

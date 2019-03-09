@@ -1,5 +1,6 @@
 #include <vector>
 #include <fstream>
+#include <algorithm>
 
 #include "Entities.hpp"
 
@@ -32,3 +33,5 @@ vector<StopTimes *> ImportStopTimes(string path);
 vector<Transfers *> ImportTransfers(string path);
 
 vector<Trips *> ImportTrips(string path);
+
+vector<StopTimes *> SortSequence(vector<StopTimes *> stop);
