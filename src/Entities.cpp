@@ -1,4 +1,5 @@
 #include "../include/Entities.hpp"
+#include <iostream>
 
 int Time::GetInt(string &str)
 {
@@ -206,11 +207,12 @@ DayOfWeek Date::GetDayOfWeek()
     }
 }
 
-//todo: toto dorobiť
 void Date::SetTotalDays(int days)
 {
+    cout << days << endl;
     int year = 2000;
     int month = 1;
+    days++;
     while (days > 1461)
     {
         year += 4;
@@ -218,6 +220,7 @@ void Date::SetTotalDays(int days)
     }
     if (days < 61)
     {
+        cout << days << endl;
         if (days < 32)
         {
             this->Month = month;
@@ -230,7 +233,7 @@ void Date::SetTotalDays(int days)
         this->Day = days;
         return;
     }
-
+    days--;
     while (days > 365)
     {
         year += 1;
@@ -389,8 +392,8 @@ bool operator>=(const Date &d1, const Date &d2)
 
 DateTime::DateTime(Date tempdate, Time temptime)
 {
-    this->date = tempdate;
-    this->time = temptime;
+    this->SetDate(tempdate);
+    this->SetTime(temptime);
 }
 
 bool operator==(const DateTime &d1, const DateTime &d2)

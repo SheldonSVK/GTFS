@@ -1,6 +1,6 @@
 #include "../include/Graph.hpp"
 
-Edge::Edge(Vertices *from, Vertices *to, StopTimes *fromstoptimes, StopTimes *tostoptimes)
+Edge::Edge(Vertices *from, Vertices *to, StopTimes *fromstoptimes, StopTimes *tostoptimes, Trips *temptrip, Routes *temproutes, Calendar *tempcalendar, vector<CalendarDates *> tempcalendardates)
 {
     this->SetVerticesFrom(from);
     this->SetVerticesTo(to);
@@ -8,12 +8,16 @@ Edge::Edge(Vertices *from, Vertices *to, StopTimes *fromstoptimes, StopTimes *to
     this->SetStopTimesTo(tostoptimes);
     this->SetArrival(Time(fromstoptimes->GetDepartureTime()));
     this->SetDeparture(Time(tostoptimes->GetArrivalTime()));
+    this->SetTrips(temptrip);
+    this->SetRoute(temproutes);
+    this->SetDays(tempcalendar);
+    this->SetCalendarDates(tempcalendardates);
 }
 
 bool Edge::CheckDay(Date date)
 {
     if (this->Days == nullptr)
-        return true;
+        return false;
     switch (date.GetDayOfWeek())
     {
     case Monday:
@@ -66,9 +70,9 @@ bool Edge::CheckDate(Date date)
     {
         Date temp(this->Exception[i]->GetDate());
         if (temp == date && this->Exception[i]->GetExceptionType() == "1")
-            return true;
+            return false;
     }
-    return false;
+    return true;
 }
 
 DateTime Edge::Weight(DateTime start)
@@ -78,9 +82,17 @@ DateTime Edge::Weight(DateTime start)
         date.AddDays(1);
     for (int i = 0; i < 10; i++)
     {
+        if (i == 9)
+        {
+            date = start.GetDate();
+            date.AddDays(-1);
+            start.SetDate(date);
+            return start;
+        }
         if (this->CheckDay(date) || this->CheckDate(date))
-            if (this->CheckException(date) == false)
+            if (this->CheckException(date))
                 break;
+        date.AddDays(1);
     }
     Time temp = Departure;
     int hour = temp.GetHour();
@@ -148,6 +160,24 @@ vector<Edge *> Graph::CreateEdges(Feed *feed)
 {
     vector<Edge *> edges;
     vector<Trips *> trips = feed->GetTripsFeed();
+
+    //Sort routes
+    map<string, Routes *> maproutes;
+    vector<Routes *> vectorroutes = feed->GetRoutesFeed();
+    for (int i = 0; i < vectorroutes.size(); i++)
+        maproutes[vectorroutes[i]->GetRouteID()] = vectorroutes[i];
+
+    //Sort calendar
+    map<string, Calendar *> mapcalendar;
+    vector<Calendar *> vectorcalendar = feed->GetCalendarFeed();
+    for (int i = 0; i < vectorcalendar.size(); i++)
+        mapcalendar[vectorcalendar[i]->GetServiceID()] = vectorcalendar[i];
+
+    //sort calendar dates
+    map<string, vector<CalendarDates *>> mapcalendardates;
+    vector<CalendarDates *> vectorcalendars = feed->GetCalendarDatesFeed();
+    for (int i = 0; i < vectorcalendars.size(); i++)
+        mapcalendardates[vectorcalendars[i]->GetServiceID()].push_back(vectorcalendars[i]);
     for (int i = 0; i < trips.size(); i++)
     {
         vector<StopTimes *> stop = this->SearchStopTimes(trips[i]->GetTripID());
@@ -159,7 +189,7 @@ vector<Edge *> Graph::CreateEdges(Feed *feed)
             Vertices *from = this->SearchVertices(stop[j]->GetStopID());
             Vertices *to = this->SearchVertices(stop[j + 1]->GetStopID());
 
-            Edge *edge = new Edge(from, to, stop[j], stop[j + 1]);
+            Edge *edge = new Edge(from, to, stop[j], stop[j + 1], trips[i], maproutes[trips[i]->GetRouteID()], mapcalendar[trips[i]->GetServiceID()], mapcalendardates[trips[i]->GetServiceID()]);
             edges.push_back(edge);
         }
     }

@@ -20,7 +20,7 @@ private:
   bool CheckDate(Date date);
 
 public:
-  Edge(Vertices *from, Vertices *to, StopTimes *fromstoptimes, StopTimes *tostoptimes);
+  Edge(Vertices *from, Vertices *to, StopTimes *fromstoptimes, StopTimes *tostoptimes, Trips *temptrip, Routes *temproutes, Calendar *tempcalendar, vector<CalendarDates *> tempcalendardates);
 
   //Gets
   Vertices *GetVerticesFrom() { return this->From; }
@@ -29,6 +29,10 @@ public:
   StopTimes *GetStopTimesTo() { return this->ToStopTimes; }
   Time GetArrival() { return this->Arrival; }
   Time GetDeparture() { return this->Departure; }
+  Trips *GetTrips() { return this->Trip; }
+  Routes *GetRoute() { return this->Route; }
+  Calendar *GetDays() { return this->Days; }
+  vector<CalendarDates *> GetCalendarDates() { return this->Exception; }
 
   //Sets
   void SetVerticesFrom(Vertices *from) { this->From = from; }
@@ -37,6 +41,10 @@ public:
   void SetStopTimesTo(StopTimes *to) { this->ToStopTimes = to; }
   void SetArrival(Time arrival) { this->Arrival = arrival; }
   void SetDeparture(Time departure) { this->Departure = departure; }
+  void SetTrips(Trips *temp) { this->Trip = temp; }
+  void SetRoute(Routes *temp) { this->Route = temp; }
+  void SetDays(Calendar *temp) { this->Days = temp; }
+  void SetCalendarDates(const vector<CalendarDates *> &temp) { this->Exception = temp; }
 
   DateTime Weight(DateTime start);
 };
