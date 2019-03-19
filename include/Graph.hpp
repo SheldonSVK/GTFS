@@ -1,7 +1,6 @@
 #include "Feed.hpp"
-#include <thread>
-#include <future>
 #include <map>
+#include <climits>
 
 class Vertices;
 
@@ -9,31 +8,37 @@ class Edge
 {
 private:
   Vertices *From, *To;
-  int seconds;
-  Time *Arrival, *Departure;
+  Time Arrival, Departure;
   StopTimes *FromStopTimes, *ToStopTimes;
+  Trips *Trip;
+  Routes *Route;
+  Calendar *Days;
+  vector<CalendarDates *> Exception;
+
+  bool CheckDay(Date date);
+  bool CheckException(Date date);
+  bool CheckDate(Date date);
 
 public:
   Edge(Vertices *from, Vertices *to, StopTimes *fromstoptimes, StopTimes *tostoptimes);
-  ~Edge();
 
   //Gets
   Vertices *GetVerticesFrom() { return this->From; }
   Vertices *GetVerticesTo() { return this->To; }
   StopTimes *GetStopTimesFrom() { return this->FromStopTimes; }
   StopTimes *GetStopTimesTo() { return this->ToStopTimes; }
-  Time *GetArrival() { return this->Arrival; }
-  Time *GetDeparture() { return this->Departure; }
+  Time GetArrival() { return this->Arrival; }
+  Time GetDeparture() { return this->Departure; }
 
   //Sets
   void SetVerticesFrom(Vertices *from) { this->From = from; }
   void SetVerticesTo(Vertices *to) { this->To = to; }
   void SetStopTimesFrom(StopTimes *from) { this->FromStopTimes = from; }
   void SetStopTimesTo(StopTimes *to) { this->ToStopTimes = to; }
-  void SetArrival(Time *arrival) { this->Arrival = arrival; }
-  void SetDeparture(Time *departure) { this->Departure = departure; }
+  void SetArrival(Time arrival) { this->Arrival = arrival; }
+  void SetDeparture(Time departure) { this->Departure = departure; }
 
-  int Weight(Time *departure);
+  DateTime Weight(DateTime start);
 };
 
 class Vertices
@@ -41,6 +46,8 @@ class Vertices
 private:
   Stops *VerticesStop;
   vector<Edge *> VerticesEdges;
+  //long Distance;
+  Time time;
 
 public:
   explicit Vertices(Stops *stop);
@@ -49,10 +56,14 @@ public:
   //Gets
   Stops *GetVerticesStop() { return this->VerticesStop; }
   vector<Edge *> GetVericesEdges() { return this->VerticesEdges; }
+  //long GetDistance() { return this->Distance; }
+  Time GetTime() { return this->time; }
 
   //Sets
   void SetVericesStop(Stops *stops) { this->VerticesStop = stops; }
   void SetVerticesEdges(const vector<Edge *> &edges) { this->VerticesEdges = edges; }
+  //void SetDistance(long distance) { this->Distance = distance; }
+  void SetTime(Time temp) { this->time = temp; }
 };
 
 class Graph
@@ -70,4 +81,5 @@ public:
   vector<Edge *> CreateEdges(Feed *feed);
   void AddEdgeVertices(vector<Edge *> edges);
   vector<StopTimes *> SearchStopTimes(string tripid);
+  void SetDistanceMaxLong();
 };

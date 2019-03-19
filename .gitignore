@@ -35,3 +35,5 @@
 Test
 **/Makefile
 Main.cpp
+Algorithm.hpp
+Algorithm.cpp

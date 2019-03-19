@@ -6,26 +6,97 @@ Edge::Edge(Vertices *from, Vertices *to, StopTimes *fromstoptimes, StopTimes *to
     this->SetVerticesTo(to);
     this->SetStopTimesFrom(fromstoptimes);
     this->SetStopTimesTo(tostoptimes);
-    this->SetArrival(new Time(fromstoptimes->GetDepartureTime()));
-    this->SetDeparture(new Time(tostoptimes->GetArrivalTime()));
-    this->seconds = this->Departure->TotalSeconds() - this->Arrival->TotalSeconds();
+    this->SetArrival(Time(fromstoptimes->GetDepartureTime()));
+    this->SetDeparture(Time(tostoptimes->GetArrivalTime()));
 }
 
-int Edge::Weight(Time *departure)
+bool Edge::CheckDay(Date date)
 {
-    int temp = this->Arrival->TotalSeconds() - departure->TotalSeconds();
-    return this->seconds + temp;
+    if (this->Days == nullptr)
+        return true;
+    switch (date.GetDayOfWeek())
+    {
+    case Monday:
+        if (this->Days->GetMonday() == "1")
+            return true;
+        return false;
+    case Tuesday:
+        if (this->Days->GetThursday() == "1")
+            return true;
+        return false;
+    case Wednesday:
+        if (this->Days->GetWednesday() == "1")
+            return true;
+        return false;
+    case Thursday:
+        if (this->Days->GetThursday() == "1")
+            return true;
+        return false;
+    case Friday:
+        if (this->Days->GetFriday() == "1")
+            return true;
+        return false;
+    case Saturday:
+        if (this->Days->GetSaturday() == "1")
+            return true;
+        return false;
+    case Sunday:
+        if (this->Days->GetSunday() == "1")
+            return true;
+        return false;
+
+    default:
+        return false;
+    }
 }
 
-Edge::~Edge()
+bool Edge::CheckException(Date date)
 {
-    delete this->Arrival;
-    delete this->Departure;
+    for (int i = 0; i < this->Exception.size(); i++)
+    {
+        Date temp(this->Exception[i]->GetDate());
+        if (temp == date && this->Exception[i]->GetExceptionType() == "2")
+            return true;
+    }
+    return false;
+}
+bool Edge::CheckDate(Date date)
+{
+    for (int i = 0; i < this->Exception.size(); i++)
+    {
+        Date temp(this->Exception[i]->GetDate());
+        if (temp == date && this->Exception[i]->GetExceptionType() == "1")
+            return true;
+    }
+    return false;
+}
+
+DateTime Edge::Weight(DateTime start)
+{
+    Date date = start.GetDate();
+    if (start.GetTime() > this->Arrival)
+        date.AddDays(1);
+    for (int i = 0; i < 10; i++)
+    {
+        if (this->CheckDay(date) || this->CheckDate(date))
+            if (this->CheckException(date) == false)
+                break;
+    }
+    Time temp = Departure;
+    int hour = temp.GetHour();
+    if (hour > 23)
+    {
+        hour -= 24;
+        date.AddDays(1);
+        temp.SetHour(hour);
+    }
+    return DateTime(date, temp);
 }
 
 Vertices::Vertices(Stops *stop)
 {
     this->SetVericesStop(stop);
+    //this->Distance = LONG_MAX;
 }
 
 Vertices::~Vertices()
@@ -108,4 +179,13 @@ void Graph::AddEdgeVertices(vector<Edge *> edges)
 vector<StopTimes *> Graph::SearchStopTimes(string tripid)
 {
     return this->GraphStopTimes[tripid];
+}
+
+void Graph::SetDistanceMaxLong()
+{
+    for (pair<const string, Vertices *> &place : this->GraphVertices)
+    {
+        Time temp(1000, 59, 59);
+        place.second->SetTime(temp);
+    }
 }

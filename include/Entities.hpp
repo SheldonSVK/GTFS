@@ -12,21 +12,42 @@ private:
   int GetInt(string &str);
 
 public:
+  Time() {}
   Time(int hour, int minute, int seconds);
   explicit Time(string time);
 
   //Gets
-  int GetHour() { return this->Hour; }
-  int GetMinute() { return this->Minute; }
-  int GetSeconds() { return this->Seconds; }
+  int GetHour() { return Hour; }
+  int GetMinute() { return Minute; }
+  int GetSeconds() { return Seconds; }
 
   //Sets
-  void SetHour(int hour) { this->Hour = hour; }
-  void SetMinute(int minute) { this->Minute = minute; }
-  void SetSeconds(int seconds) { this->Seconds = seconds; }
+  void SetHour(int hour) { Hour = hour; }
+  void SetMinute(int minute) { Minute = minute; }
+  void SetSeconds(int seconds) { Seconds = seconds; }
 
-  int TotalSeconds() { return (this->Hour * 3600) + (this->Minute * 60) + this->Seconds; }
-  string ToString() { return to_string(this->Hour) + ":" + to_string(this->Minute) + ":" + to_string(this->Seconds); }
+  int TotalSeconds() { return (Hour * 3600) + (Minute * 60) + Seconds; }
+  string ToString() { return to_string(Hour) + ":" + to_string(Minute) + ":" + to_string(Seconds); }
+
+  friend bool operator==(const Time &t1, const Time &t2);
+  friend bool operator!=(const Time &t1, const Time &t2);
+  friend bool operator<(const Time &t1, const Time &t2);
+  friend bool operator>(const Time &t1, const Time &t2);
+  friend bool operator<=(const Time &t1, const Time &t2);
+  friend bool operator>=(const Time &t1, const Time &t2);
+  friend Time operator+(Time const &t1, Time const &t2);
+  friend Time operator-(Time const &t1, Time const &t2);
+};
+
+enum DayOfWeek
+{
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday
 };
 
 class Date
@@ -38,6 +59,7 @@ private:
   int GetInt(string &str, int size);
 
 public:
+  Date() {}
   Date(int day, int month, int year);
   explicit Date(string date);
 
@@ -51,7 +73,46 @@ public:
   void SetMonth(int month) { this->Month = month; }
   void SetYear(int year) { this->Year = year; }
 
+  int TotalDays();
+  DayOfWeek GetDayOfWeek();
+  void SetTotalDays(int days);
+  void AddDays(int days);
   string ToString() { return to_string(this->Day) + "." + to_string(this->Month) + "." + to_string(this->Year); }
+
+  friend bool operator==(const Date &d1, const Date &d2);
+  friend bool operator!=(const Date &d1, const Date &d2);
+  friend bool operator<(const Date &d1, const Date &d2);
+  friend bool operator>(const Date &d1, const Date &d2);
+  friend bool operator<=(const Date &d1, const Date &d2);
+  friend bool operator>=(const Date &d1, const Date &d2);
+};
+
+class DateTime
+{
+private:
+  Date date;
+  Time time;
+
+public:
+  DateTime() {}
+  DateTime(Date tempdate, Time temptime);
+
+  //Gets
+  Date GetDate() { return this->date; }
+  Time GetTime() { return this->time; }
+
+  //Sets
+  void SetDate(Date temp) { this->date = temp; }
+  void SetTime(Time temp) { this->time = temp; }
+
+  string to_string() { return this->date.ToString() + " " + this->time.ToString(); }
+
+  friend bool operator==(const DateTime &d1, const DateTime &d2);
+  friend bool operator!=(const DateTime &d1, const DateTime &d2);
+  friend bool operator<(const DateTime &d1, const DateTime &d2);
+  friend bool operator>(const DateTime &d1, const DateTime &d2);
+  friend bool operator<=(const DateTime &d1, const DateTime &d2);
+  friend bool operator>=(const DateTime &d1, const DateTime &d2);
 };
 
 //Agency class
