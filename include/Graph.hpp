@@ -54,8 +54,10 @@ class Vertices
 private:
   Stops *VerticesStop;
   vector<Edge *> VerticesEdges;
-  //long Distance;
-  Time time;
+  DateTime time;
+  Edge *Prev;
+  bool Check;
+  Vertices *Pilot;
 
 public:
   explicit Vertices(Stops *stop);
@@ -64,14 +66,18 @@ public:
   //Gets
   Stops *GetVerticesStop() { return this->VerticesStop; }
   vector<Edge *> GetVericesEdges() { return this->VerticesEdges; }
-  //long GetDistance() { return this->Distance; }
-  Time GetTime() { return this->time; }
+  DateTime GetTime() { return this->time; }
+  Edge *GetPrev() { return this->Prev; }
+  bool GetCheck() { return this->Check; }
+  Vertices *GetPilot() { return this->Pilot; }
 
   //Sets
   void SetVericesStop(Stops *stops) { this->VerticesStop = stops; }
   void SetVerticesEdges(const vector<Edge *> &edges) { this->VerticesEdges = edges; }
-  //void SetDistance(long distance) { this->Distance = distance; }
-  void SetTime(Time temp) { this->time = temp; }
+  void SetTime(const DateTime &temp) { this->time = temp; }
+  void SetPrev(Edge *prev) { this->Prev = prev; }
+  void SetCheck(bool check) { this->Check = check; }
+  void SetPilot(Vertices *pilot) { this->Pilot = pilot; }
 };
 
 class Graph
@@ -89,5 +95,5 @@ public:
   vector<Edge *> CreateEdges(Feed *feed);
   void AddEdgeVertices(vector<Edge *> edges);
   vector<StopTimes *> SearchStopTimes(string tripid);
-  void SetDistanceMaxLong();
+  void SetDistanceMaxLong(DateTime datetime, Vertices *pilot);
 };

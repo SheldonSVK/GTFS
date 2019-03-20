@@ -60,9 +60,9 @@ bool Edge::CheckException(Date date)
     {
         Date temp(this->Exception[i]->GetDate());
         if (temp == date && this->Exception[i]->GetExceptionType() == "2")
-            return true;
+            return false;
     }
-    return false;
+    return true;
 }
 bool Edge::CheckDate(Date date)
 {
@@ -77,6 +77,7 @@ bool Edge::CheckDate(Date date)
 
 DateTime Edge::Weight(DateTime start)
 {
+
     Date date = start.GetDate();
     if (start.GetTime() > this->Arrival)
         date.AddDays(1);
@@ -108,7 +109,9 @@ DateTime Edge::Weight(DateTime start)
 Vertices::Vertices(Stops *stop)
 {
     this->SetVericesStop(stop);
-    //this->Distance = LONG_MAX;
+    this->Pilot = nullptr;
+    this->Prev = nullptr;
+    this->Check = false;
 }
 
 Vertices::~Vertices()
@@ -211,11 +214,17 @@ vector<StopTimes *> Graph::SearchStopTimes(string tripid)
     return this->GraphStopTimes[tripid];
 }
 
-void Graph::SetDistanceMaxLong()
+void Graph::SetDistanceMaxLong(DateTime datetime, Vertices *pilot)
 {
+    Date date = datetime.GetDate();
+    date.AddDays(200);
+    datetime.SetDate(date);
     for (pair<const string, Vertices *> &place : this->GraphVertices)
     {
         Time temp(1000, 59, 59);
-        place.second->SetTime(temp);
+        place.second->SetTime(datetime);
+        place.second->SetPrev(nullptr);
+        place.second->SetCheck(false);
+        place.second->SetPilot(pilot);
     }
 }

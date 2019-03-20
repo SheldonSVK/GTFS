@@ -1,5 +1,4 @@
 #include "../include/Entities.hpp"
-#include <iostream>
 
 int Time::GetInt(string &str)
 {
@@ -209,7 +208,6 @@ DayOfWeek Date::GetDayOfWeek()
 
 void Date::SetTotalDays(int days)
 {
-    cout << days << endl;
     int year = 2000;
     int month = 1;
     days++;
@@ -220,7 +218,6 @@ void Date::SetTotalDays(int days)
     }
     if (days < 61)
     {
-        cout << days << endl;
         if (days < 32)
         {
             this->Month = month;

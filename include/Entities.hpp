@@ -27,7 +27,7 @@ public:
   void SetSeconds(int seconds) { Seconds = seconds; }
 
   int TotalSeconds() { return (Hour * 3600) + (Minute * 60) + Seconds; }
-  string ToString() { return to_string(Hour) + ":" + to_string(Minute) + ":" + to_string(Seconds); }
+  string ToString() { return (Hour < 10 ? "0" + to_string(Hour) : to_string(Hour)) + ":" + (Minute < 10 ? "0" + to_string(Minute) : to_string(Minute)) + ":" + (Seconds < 10 ? "0" + to_string(Seconds) : to_string(Seconds)); }
 
   friend bool operator==(const Time &t1, const Time &t2);
   friend bool operator!=(const Time &t1, const Time &t2);
@@ -105,7 +105,7 @@ public:
   void SetDate(Date temp) { this->date = temp; }
   void SetTime(Time temp) { this->time = temp; }
 
-  string to_string() { return this->date.ToString() + " " + this->time.ToString(); }
+  string ToString() { return this->date.ToString() + " " + this->time.ToString(); }
 
   friend bool operator==(const DateTime &d1, const DateTime &d2);
   friend bool operator!=(const DateTime &d1, const DateTime &d2);
